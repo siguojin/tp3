@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px">
+		<foreach name="list" item="vo" >  
+			<tr>
+				<td><input type="checkbox" value="{$vo.id}" name="cd">{$vo.id}</td>
+				<td>{$vo.fen}</td>
+				<td>{$vo.ming}</td>
+				<td>{$vo.shu}</td>
+				<td>{$vo.bz}</td>
+
+			</tr>
+
+		</foreach>
+		<input type="button" value="选中删除" onclick="qw()">
+	</table>
+
+	{$page}
+	
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script>
+
+	function qw(){
+		var id=document.getElementsByName('cd');
+		var length=id.length;
+		var str="";
+		for(var i=0;i<id.length;i++){
+			if(id[i].checked){
+				str+=id[i].value+',';
+			}
+		}
+		$.ajax({
+			type:"post",
+			url:"{:U('clcl')}",
+			data:{
+				id:str
+			},
+			success:function(a){
+				if(a==1){
+					alert('删除成功');
+					window.location.href="{:U('bdd')}";
+				}else{
+					alert('删除失败');
+				}
+			}
+		})
+	}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

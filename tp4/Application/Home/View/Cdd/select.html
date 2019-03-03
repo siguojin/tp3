@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="0">
+	<foreach name="list" item="vo" > 
+	<tr>
+		<td>{$vo.id}</td>
+		<td>{$vo.user}</td>
+		<td><img src="/Uploads/{$vo.file}" alt=""></td>
+		<td>{$vo.cd}</td>
+	</tr>
+
+	</foreach>
+	</table>
+</body>
+</html>

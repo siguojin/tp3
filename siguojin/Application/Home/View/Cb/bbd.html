@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="0">
+		<th>id</th>
+		<th>账户</th>
+		<th>密码</th>
+		<th>头像</th>
+		<th>上架</th>
+		<th>省市</th>
+		<foreach name="list" item="vo" >
+			<tr>
+				<td>{$vo.id}</td>
+				<td>{$vo.user}</td>
+				<td>{$vo.psd}</td>
+				<td>{$vo.id}</td>
+				<td>{$vo.status}</td>
+				<td>{$vo.users}</td>	
+			</tr>
+
+		</foreach>
+	</table>
+
+	
+</body>
+</html>

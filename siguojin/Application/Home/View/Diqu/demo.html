@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="sheng">
+        <option value="">请选择省</option>
+        <foreach name="info" item="v" key="k" >
+        <option value="{$v.id}">{$v.users}</option>
+        </foreach>
+    </select>
+    <select name="" id="shi">
+     <option value="">请选择市</option>
+    </select>
+    <select name="" id="xian">
+     <option value="">请选择县</option>
+
+    </select>
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script>
+
+    $("#sheng").change(function(){
+        //去省长的值
+        var sid=$("#sheng").val();
+        $.ajax({
+            type:'POST',
+            url:"{:U('bdd')}",
+            data:{
+                sid:sid
+            },
+            success:function(e){
+                    $("#shi").html(e);
+            }
+        })
+    })
+
+     $("#shi").change(function(){
+        //去省长的值
+        var sid=$("#shi").val();
+        $.ajax({
+            type:'POST',
+            url:"{:U('cdd')}",
+            data:{
+                sid:sid
+            },
+            success:function(e){
+                    $("#xian").html(e);
+
+            }
+
+        })
+    })
+
+
+
+</script>

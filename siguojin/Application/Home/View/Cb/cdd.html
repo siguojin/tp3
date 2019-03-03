@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1"  bgcolor="green" cellspacing="0" bordercolor="green">
+		<th>id</th>
+		<th>用户</th>
+		<th>密码</th>
+		<th>头像</th>
+		<th>地区</th>
+		<th>操作</th>
+		<foreach name="list" item="vo" >
+			<tr>
+				<td>{$vo.id}</td>
+				<td>{$vo.user}</td>
+				<td>{$vo.psd}</td>
+				<td>
+					<foreach name="vo.files" item="v" >
+						<img src="/Uploads/{$v}" width="50px" height="50px">
+					</foreach>
+				</td>
+				<td>{$vo.users}</td>
+				<td><a href="{:U('delete',array('id'=>$vo['id']))}">删除</a></td>
+			</tr>
+			
+		</foreach>
+	</table>
+	
+</body>
+</html>

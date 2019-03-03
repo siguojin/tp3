@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+<form action="{:U('clcl')}" method="get">
+	<input type="text" name="cd">
+	<button>搜索</button>
+	</form>
+	<table border="1px" cellspacing="0">
+	<foreach name="list" item="vo" >   
+		<tr>
+			<td>{$vo.id}</td>
+			<td>{$vo.user}</td>
+			<td>{$vo.psd}</td>  
+			<td><img src="/Uploads/{$vo.files}" alt="" width="100px" height="30px"></td>
+		</tr>
+	</foreach>
+	{$page}
+	</table>
+</body>
+</html>

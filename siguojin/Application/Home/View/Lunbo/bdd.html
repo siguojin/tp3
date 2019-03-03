@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<form action="{:U('insert')}" method="post" enctype="multipart/form-data">
+			<tr>
+				<td>轮播图名称：</td>
+				<td><input type="text" name="users"></td>
+			</tr>
+			<tr>
+				<td>轮播图地址：</td>
+				<td><input type="text" name="emali"></td>
+			</tr>
+			<tr>
+				<td>轮播图：</td>
+				<div id="qc"><td><input type="file" name="files[]"></td></div>
+				<td><input type="file" name="files[]"></td>
+				<td><input type="button" value="再来一条" onclick="qw()"></td>
+			</tr>
+			<tr>
+				<td>轮播图排序：</td>
+				<td><input type="text" name="nubmer"></td>
+			</tr>
+			<tr>
+				<td>轮播图状态：</td>
+				<td><input type="radio" name="block" value="显示">显示
+				      <input type="radio" name="block" value="不显示">不显示</td>
+
+			</tr>
+				<td><button>提交</button></td>
+				
+      
+			</tr>
+	
+		</form>
+
+
+		<select name="" id="sheng">
+			<option value="请输入省">请输入省</option>
+			<foreach name="info" item="v" >
+				<option value="{$v.id}">{$v.users}</option>
+			</foreach>
+		</select>
+		<select name="" id="shi">
+			<option >请输入市</option>
+		</select>
+		<select name="" id="xian">
+			<option>请输入县</option>
+		</select>
+	</table>
+
+	
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script>
+	$('#sheng').change(function(){
+		var sid=$('#sheng').val();
+		$.ajax({
+			type:'POST',
+			url:"{:U('edd')}",
+			data:{
+				sid:sid
+			},
+			success:function(e){
+				$('#shi').html(e);
+			}
+		})
+	})
+		$('#shi').change(function(){
+		var sid=$('#shi').val();
+		$.ajax({
+			type:'POST',
+			url:"{:U('edd')}",
+			data:{
+				sid:sid
+			},
+			success:function(e){
+				$('#xian').html(e);
+			}
+		})
+	})
+</script>

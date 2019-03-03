@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="{:U(upload)}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{$info.cid}">
+		姓名：<input type="text" name="user" value="{$info.user}"><br>
+		分类：<input type="text" name="csd" value="{$info.csd}"><br>
+		权限：<input type="text" name="phon" value="{$info.phon}"><br>
+		头像：<input type="file" name="files" value="{$info.files}">
+		<button>提交</button>
+
+	</form>
+	
+</body>
+</html>

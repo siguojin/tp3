@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DouPHP 管理中心 - 角色管理 </title>
+<meta name="Copyright" content="Douco Design." />
+<link href="__PUBLIC__/admin/css/public.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/admin/js/global.js"></script>
+</head>
+<body>
+   <include file="./Application/Home/View/Privileges/header.html"/>
+<!-- dcHead 结束 --> 
+ <include file="./Application/Home/View/Privileges/left.html"/>
+   <!-- 当前位置 -->
+<div id="urHere">DouPHP 管理中心<b>></b><strong>角色管理</strong> </div>   <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="{:U('addRole')}" class="actionBtn">添加角色</a>角色管理</h3>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+     <tr>
+      <form action="{:U('showRole')}" method="get">
+           <input type="text" name="search" placeholder ="请输入角色名称">
+            <input type="submit" value="搜索">
+      </form>
+     
+      <th width="30" align="center">编号</th>
+      <th align="left">角色名称</th>
+       <th align="left">创建时间</th>
+        <th align="left">角色状态</th>
+      <th align="center">操作</th>
+     </tr>
+     
+     <foreach name="info" item="vo" key="k" >   
+     <tr>
+      <td align="center">{$vo.rid}</td>
+      <td onclick="updaterole({$vo.rid})">
+            <input type="text" style="display: none" id="c{$vo.rid}" value="{$vo.role_name}" onblur="updatename({$vo.rid})">
+            <span id="s{$vo.rid}">  {$vo.role_name}</span>
+        
+      </td>
+      <td>{$vo.create_time}</td>
+      <td>
+      	<if condition="$vo['status'] eq 1 ">允许使用<else /> 禁止使用</if>
+      </td>
+      <td align="center">
+        <a href="{:U('seting',array('id'=>$vo['rid']))}">设置权限</a> | 
+        <a href="{:U('userUpdate',array('id'=>$vo['id']))}">编辑</a> | 
+        <a href="{:U('userDelete',array('id'=>$vo['id']))}">删除</a></td>
+     </tr>
+     </foreach>
+
+         </table>
+         {$page}
+                       </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+  <ul>
+   版权所有 © 2013-2015 漳州豆壳网络科技有限公司，并保留所有权利。
+  </ul>
+ </div>
+</div><!-- dcFooter 结束 -->
+<div class="clear"></div> </div>
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script>
+          function updaterole(a){
+            // alert(a);
+              document.getElementById('c'+a).style.display="block";//将文本框显示出来
+              document.getElementById('s'+a).innerHTML=" ";//将多余的显示出来
+          }
+          function updatename(a){
+                  var id=a;
+                  var name=document.getElementById('c'+a).value;
+                $.ajax({
+                    type:'POST',
+                    url:"{:U('saveroles')}",
+                    data:{
+                      id:id,
+                      names:name
+                    },
+                    success:function(q){
+                        if(q==1){
+                               document.getElementById('c'+a).style.display="none";//将文本框显示出来
+                               document.getElementById('s'+a).innerHTML=name;//将多余的显示出来
+                               alert('修改成功');
+                               window.location.href="{:U(showRole)}";
+                        }else{
+                          alert('修改失败');
+                        }
+                    }
+
+
+                })
+          }
+</script>

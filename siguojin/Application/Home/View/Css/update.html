@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="{:U('upload')}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{$info.id}">
+		姓名：<input type="text" name="user" value="{$info.user}"><br>
+		密码：<input type="text" name="psd" value="{$info.psd}"><br>
+		头像：<input type="file" name="files" value="$info['files']"><br>
+		<button>修改</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a href="{:U('addUser')}">新增用户</a>
+	<form action="{:U('showUser')}" method="get">
+		<input type="text" name="search">
+		<input type="submit" value="搜索一下">
+	</form>
+	<input type="text" id="searchs">
+	<input type="button" value="搜索二" onclick="searchs()">
+	<table border="1">
+		<th>id</th>
+		<th>邮箱</th>
+		<th>用户名</th>
+		<th>手机号</th>
+		<th>地址</th>
+		<foreach name="info" item="vo" key="k" > 
+			<tr>
+				<td>{$vo.id}</td>
+				<td>{$vo.email}</td>
+				<td>{$vo.username}</td>
+				<td>{$vo.telphone}</td>
+				<td>{$vo.address}</td>
+			</tr>
+		</foreach>
+	</table>
+	{$page}
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script type="text/javascript">
+	function searchs(){
+		var search=$("#searchs").val();
+		window.location.href="http://localhost/siguojin/index.php/Home/User/showUser/search/"+search;
+	}
+</script>

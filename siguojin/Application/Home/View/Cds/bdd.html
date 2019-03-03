@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="0">
+		<th>id</th>
+		<th>姓名</th>
+		<th>密码</th>
+		<th>头像</th>
+		<th>操作</th>
+		<foreach name="info" item="vo" key="k" >
+			<tr>
+				<td><input type="checkbox" name="cd" value="{$vo.id}">{$vo.id}</td>
+				<td>{$vo.user}</td>
+				<td>{$vo.psd}</td>
+				<td>	
+				<foreach name="vo.files" item="v" key="k" > 
+					<img src="/Uploads/{$v}" width="100px" height="100px">
+				</foreach>
+
+				</td>
+				<td>
+				<a href="{:U('delete',array('id'=>$vo['id']))}">删除</a>
+				<a href="{:U('update',array('id'=>$vo['id']))}">修改</a>
+				</td>
+			</tr>
+		</foreach>
+		{$page}
+	</table>
+	<input type="submit" value="选中删除" onclick="qw()">
+	<input type="submit" value="全选" onclick="q()">
+	<input type="submit" value="反选" onclick="w()">
+</body>
+</html>
+<script src="__PUBLIC__/jquery.js"></script>
+<script>
+	function qw(){
+		var id=document.getElementsByName('cd');
+		str="";
+		var length=id.length;
+		for(var i=0;i<length;i++){
+		if(id[i].checked){
+			str+=id[i].value+",";
+
+		}
+
+		}
+		$.ajax({
+			type:"POST",
+			url:"{:U('cdd')}",
+			data:{
+				id:str
+			},
+			success:function(q){
+				if(q==1){
+					alert('删除成功');
+					window.location.href="{:U('bdd')}"; 
+				}else{
+					alert('删除失败');
+				}
+			}
+		})
+	}
+
+	function q(){
+		var id=document.getElementsByName('cd');
+	
+		var length=id.length;
+	
+		for(var i=0;i<length;i++){
+			id[i].checked=true;
+		}
+
+	}
+	function w(){
+		var id=document.getElementsByName('cd');
+		var length=id.length;
+	
+		for(var i=0;i<length;i++){
+			id[i].checked=false;
+		}
+
+	}
+
+</script>

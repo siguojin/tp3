@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="1px">
+		<th>id</th>
+		<th>头像</th>
+		<foreach name="info" item="v" key="k" >
+			<tr>
+				<td>{$v.id}</td>
+			<td>
+				<foreach name="v.侯少雄儿子" item="vo" key="k" >   
+					<img src="/Uploads/{$vo}" width="50px" height="50px">
+				</foreach>
+		
+			</td>
+			</tr>
+			
+		</foreach>
+	</table>
+
+	
+</body>
+</html>

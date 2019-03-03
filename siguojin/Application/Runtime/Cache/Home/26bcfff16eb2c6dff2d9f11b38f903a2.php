@@ -1,0 +1,87 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="<?php echo U('add');?>" method="post" enctype="mulitpart/form-data">
+	<table >
+		<tr>
+			<td>账号:</td>
+			<td><input type="text" name="user" id="users"></td>
+		</tr>
+		<tr>
+			<td>密码:</td>
+			<td><input type="text" name="psd" id="psds"></td>
+		</tr>
+		<tr>
+			<td>验证码:</td>
+			<td><input type="text" name="code" id="codes"></td>
+	
+		</tr>
+		<tr>
+			<td>头像:</td>
+			<td><input type="file" name="files[]" id="files" ></td>
+			<td><input type="button" value="来一条" onclick="qc()"></td>
+			<span id="erzi"></span>
+	
+		</tr>
+		<tr>	
+			<td><div id="qw"><img src="<?php echo U('showCode');?>" width="150px"></div></td>
+			<td><a href="#" onclick="qe()">可毛北鼻，下一张</a></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="注册" onclick="qwe()"></td>
+		</tr>
+	</table>
+
+	</form>
+</body>
+</html>
+<script src="/Public/jquery.js"></script>	
+<script>
+	function qe(){
+		document.getElementById('qw').innerHTML='<img src="<?php echo U('showCode');?>" width="150px">';
+	} 
+
+	function qw(){
+		var str='<input type="file" name="files[]">';
+		$('#erzi').append(str);
+
+	}
+
+	//提交入库信息
+	function qwe(){
+		//获取姓名
+		var users=$('#users').val();
+		//获取密码
+		var psds=$('#psds').val();
+		//获取验证码
+		var code=$('#codes').val();
+		//获取头像
+		var files=$('#files').val();
+		$.ajax({
+			type:'POST',
+			url:"<?php echo U('demos');?>",
+			data:{
+				users:users,
+				psds:psds,
+				code:code,
+				files:files
+			},
+			success:function(e){
+				if(e==1){
+					alert('验证码有误');
+
+				}
+;			}
+
+		})
+
+
+
+	}
+
+
+</script>

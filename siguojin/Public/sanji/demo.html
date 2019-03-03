@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>三级联动</title>
+    
+    <link rel="stylesheet" href="city-picker.css">
+</head>
+<body>
+<div class="form-group" style="width:60%;">
+    <div style="position: relative;">
+        <input id="city-picker3" class="form-control" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker" style="width:100%;">
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="city-picker.data.js"></script>
+<script type="text/javascript" src="city-picker.js"></script>
+<script type="text/javascript">
+ $(function () {
+
+    'use strict';
+
+
+    var $citypicker1 = $('#city-picker1');
+
+    $citypicker1.citypicker();
+
+    var $citypicker2 = $('#city-picker2');
+
+    $citypicker2.citypicker({
+        province: '江苏省',
+        city: '常州市',
+        district: '溧阳市'
+    });
+
+    var $citypicker3 = $('#city-picker3');
+
+    $('#reset').click(function () {
+        $citypicker3.citypicker('reset');
+    });
+
+    $('#destroy').click(function () {
+        $citypicker3.citypicker('destroy');
+    });
+
+});
+</script>
